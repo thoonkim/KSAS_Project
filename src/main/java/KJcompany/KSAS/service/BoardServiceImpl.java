@@ -24,10 +24,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Transactional
-
 	public Board read(Long boardNo) throws Exception {
-
-
 		return repository.getOne(boardNo);
 	}
 

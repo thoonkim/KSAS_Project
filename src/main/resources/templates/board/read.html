@@ -22,6 +22,10 @@
 	
 		<table>
 			<tr>
+				<td th:text="#{board.views}">조회수</td>
+				<td><input type="text" name="views" th:field="*{views}" readonly="readonly" /></td>
+			</tr>
+			<tr>
 				<td th:text="#{board.title}">제목</td>
 				<td><input type="text" name="title" th:field="*{title}" readonly="readonly" /></td>
 			</tr>

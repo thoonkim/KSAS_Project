@@ -1,7 +1,9 @@
 package KJcompany.KSAS.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import KJcompany.KSAS.common.security.domain.CustomUser;
 import KJcompany.KSAS.domain.Board;
@@ -11,6 +13,7 @@ import KJcompany.KSAS.dto.PaginationDTO;
 import KJcompany.KSAS.service.BoardService;
 import KJcompany.KSAS.service.BoardServiceImpl;
 import KJcompany.KSAS.vo.PageRequestVO;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -22,6 +25,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.RequiredArgsConstructor;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @RequiredArgsConstructor
 @Controller
@@ -78,15 +85,39 @@ public class BoardController {
 		model.addAttribute("searchTypeCodeValueList", searchTypeCodeValueList);
 	}
 
+
 	@GetMapping("/read")
-	public String read(Long boardNo, Board board, @ModelAttribute("pgrq") PageRequestVO pageRequestVO, Model model) throws Exception {
+	public String read(Long boardNo, Board board, @ModelAttribute("pgrq") PageRequestVO pageRequestVO, Model model,HttpServletRequest req,HttpServletResponse res) throws Exception {
+		// 저장된 쿠키 불러오기
+		Cookie cookies[] = req.getCookies();
+		Map map = new HashMap();
+		if(req.getCookies() != null){
+			for (int i = 0; i < cookies.length; i++) {
+				Cookie obj = cookies[i];
+				map.put(obj.getName(),obj.getValue());
+			}
+		}
+
+		// 저장된 쿠키중에 read_count 만 불러오기
+		String readCount = (String) map.get("read_count");
+		// 저장될 새로운 쿠키값 생성
+		String newReadCount = "|" + boardNo;
+
+		// 저장된 쿠키에 새로운 쿠키값이 존재하는 지 검사
+		if ( StringUtils.indexOfIgnoreCase(readCount, newReadCount) == -1 ) {
+			// 없을 경우 쿠키 생성
+			Cookie cookie = new Cookie("read_count", readCount + newReadCount);
+
+			res.addCookie(cookie);
+			model.addAttribute(service.read(boardNo));
+			Integer i = service.read(boardNo).getViews()+1;
+			Board boardTemp = service.read(boardNo);
+			boardTemp.setViews(i);
+			service.views(boardTemp);
+			return "/board/read";
+		}
 
 		model.addAttribute(service.read(boardNo));
-		Integer i = service.read(boardNo).getViews()+1;
-		Board boardTemp = service.read(boardNo);
-		boardTemp.setViews(i);
-		service.views(boardTemp);
-
 		return "/board/read";
 	}
 
