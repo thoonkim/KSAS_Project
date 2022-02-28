@@ -9,6 +9,7 @@ import KJcompany.KSAS.domain.Member;
 import KJcompany.KSAS.dto.CodeLabelValue;
 import KJcompany.KSAS.dto.PaginationDTO;
 import KJcompany.KSAS.service.BoardService;
+import KJcompany.KSAS.service.BoardServiceImpl;
 import KJcompany.KSAS.vo.PageRequestVO;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,10 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.RequiredArgsConstructor;
@@ -81,8 +79,15 @@ public class BoardController {
 	}
 
 	@GetMapping("/read")
-	public void read(Long boardNo, @ModelAttribute("pgrq") PageRequestVO pageRequestVO, Model model) throws Exception {
+	public String read(Long boardNo, Board board, @ModelAttribute("pgrq") PageRequestVO pageRequestVO, Model model) throws Exception {
+
 		model.addAttribute(service.read(boardNo));
+		Integer i = service.read(boardNo).getViews()+1;
+		Board boardTemp = service.read(boardNo);
+		boardTemp.setViews(i);
+		service.views(boardTemp);
+
+		return "/board/read";
 	}
 
 	@PostMapping("/remove")
@@ -103,6 +108,7 @@ public class BoardController {
 	@GetMapping("/modify")
 	@PreAuthorize("hasRole('MEMBER')")
 	public void modifyForm(Long boardNo, @ModelAttribute("pgrq") PageRequestVO pageRequestVO, Model model) throws Exception {
+
 		model.addAttribute(service.read(boardNo));
 	}
 

@@ -11,16 +11,15 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
 @Getter
 @Setter
+@NoArgsConstructor //추가
+@AllArgsConstructor//추가
+@Builder//추가
 @EqualsAndHashCode(of="boardNo")
 @ToString
 @Entity
@@ -46,7 +45,7 @@ public class Board {
 	@UpdateTimestamp
 	private LocalDateTime updDate;
 
-	@Column(columnDefinition = "integer default 0", nullable = false)
+	@Column(columnDefinition = "integer default 0", nullable = false)//추가
 	private int views;
 
 }
