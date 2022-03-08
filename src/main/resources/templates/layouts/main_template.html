@@ -11,13 +11,16 @@
 
 	<div th:replace="fragments/header::header"></div>
 	<hr>
-	
-	<div th:replace="fragments/menu::menu"></div>
+	<div>
+	<div th:replace="fragments/menu::menu">		</div>
+		<div align="center" layout:fragment="content">
+
+
+	</div>
+	</div>
 	<hr>
 	
-	<div align="center" layout:fragment="content">
-		
-	</div>
+
 	
 	<div th:replace="fragments/footer::footer"></div>
 	<hr>
