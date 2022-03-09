@@ -1,131 +1,63 @@
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
-<title>Collapsible sidebar using Bootstrap 4</title>
-
-<head>
-	<!-- Bootstrap CSS CDN -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-	<!-- Our Custom CSS -->
-	<link rel="stylesheet" href="/css/style.css">
-
-	<!-- Font Awesome JS -->
-	<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-	<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-</head>
 <body>
-<div class="wrapper">
-	<nav align="center" th:fragment="menu" id="sidebar">
+<div align="center" th:fragment="menu">
+	<table>
+		<tr>
+			<ul class="list-unstyled components">
+				<h3>KSAS</h3>
+				<h5>Korea Socirty of Aesthetic Surgery</h5>
 
-			<ul>
-				<li width="80"><a href="../home.html" th:href="@{/}" th:text="#{header.home}">홈</a></li>
-				
+				<li>
+					<a href="../home.html" th:href="@{/}" th:text="#{header.home}">홈</a></td>
+				</li>
 				<th:block sec:authorize="!isAuthenticated()">
-					<li width="120"><a href="../board/list.html" th:href="@{/board/list}" th:text="#{menu.board.member}">회원게시판</a></li>
-					<li width="120"><a href="../notice/list.html" th:href="@{/notice/list}" th:text="#{menu.notice.member}">공지사항</a></li>
-					<li width="120"><a href="../item/list.html" th:href="@{/item/list}" th:text="#{menu.item.member}">상품</a></li>
-					<li width="120"><a href="../pds/list.html" th:href="@{/pds/list}" th:text="#{menu.pds.member}">공개자료실</a></li>
-				</th:block>
-	
-				<th:block sec:authorize="isAuthenticated()">
-				
-					<th:block sec:authorize="hasRole('ADMIN')">
-						<li width="120"><a href="../codegroup/list.html" th:href="@{/codegroup/list}" th:text="#{menu.codegroup.list}">코드그룹관리</a></li>
-						<li width="120"><a href="../codedetail/list.html" th:href="@{/codedetail/list}" th:text="#{menu.codedetail.list}">코드관리</a></li>
-						<li width="120"><a href="../user/list.html" th:href="@{/user/list}" th:text="#{menu.user.admin}">회원관리</a></li>
-						<li width="120"><a href="../board/list.html" th:href="@{/board/list}" th:text="#{menu.board.admin}">회원게시판관리</a></li>
-						<li width="120"><a href="../notice/list.html" th:href="@{/notice/list}" th:text="#{menu.notice.admin}">공지사항관리</a></li>
-						<li width="120"><a href="../item/list.html" th:href="@{/item/list}" th:text="#{menu.item.admin}">상품관리</a></li>
-						<li width="120"><a href="../pds/list.html" th:href="@{/pds/list}" th:text="#{menu.pds.admin}">공개자료실관리</a></li>
-					</th:block>
-					
-					<th:block sec:authorize="hasRole('MEMBER')">
-						<li width="120"><a href="../board/list.html" th:href="@{/board/list}" th:text="#{menu.board.member}">회원게시판</a></li>
-						<li width="120"><a href="../notice/list.html" th:href="@{/notice/list}" th:text="#{menu.notice.member}">공지사항</a></li>
-						<li width="120"><a href="../item/list.html" th:href="@{/item/list}" th:text="#{menu.item.member}">상품</a></li>
-						<li width="120"><a href="../coin/charge.html" th:href="@{/coin/charge}" th:text="#{menu.coin.charge}">코인충전</a></li>
-						<li width="120"><a href="../coin/list.html" th:href="@{/coin/list}" th:text="#{menu.coin.list}">충전내역</a></li>
-						<li width="120"><a href="../useritem/list.html" th:href="@{/useritem/list}" th:text="#{menu.useritem.list}">구매상품</a></li>
-						<li width="120"><a href="../coin/listPay.html" th:href="@{/coin/listPay}" th:text="#{menu.coin.listPay}">구매내역</a></li>
-						<li width="120"><a href="../pds/list.html" th:href="@{/pds/list}" th:text="#{menu.pds.member}">공개자료실</a></li>
-					</th:block>
-					
+					<li>
+						<a href="../board/list.html" th:href="@{/board/list}" th:text="#{menu.board.member}">회원게시판</a>
+					</li>
+					<li>
+						<a href="../notice/list.html" th:href="@{/notice/list}" th:text="#{menu.notice.member}">공지사항</a></td>
+					</li>
+					<li>
+						<a href="../item/list.html" th:href="@{/item/list}" th:text="#{menu.item.member}">상품</a></td>
+					</li>
+					<li>
+						<a href="../pds/list.html" th:href="@{/pds/list}" th:text="#{menu.pds.member}">공개자료실</a></td>
+					</li>
 				</th:block>
 			</ul>
 
-	</nav>
-	<!-- Page Content  -->
-	<div id="content">
+			<th:block sec:authorize="isAuthenticated()">
 
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="container-fluid">
+				<th:block sec:authorize="hasRole('ADMIN')">
+					<td width="120"><a href="../codegroup/list.html" th:href="@{/codegroup/list}" th:text="#{menu.codegroup.list}">코드그룹관리</a></td>
+					<td width="120"><a href="../codedetail/list.html" th:href="@{/codedetail/list}" th:text="#{menu.codedetail.list}">코드관리</a></td>
+					<td width="120"><a href="../user/list.html" th:href="@{/user/list}" th:text="#{menu.user.admin}">회원관리</a></td>
+					<td width="120"><a href="../board/list.html" th:href="@{/board/list}" th:text="#{menu.board.admin}">회원게시판관리</a></td>
+					<td width="120"><a href="../notice/list.html" th:href="@{/notice/list}" th:text="#{menu.notice.admin}">공지사항관리</a></td>
+					<td width="120"><a href="../item/list.html" th:href="@{/item/list}" th:text="#{menu.item.admin}">상품관리</a></td>
+					<td width="120"><a href="../pds/list.html" th:href="@{/pds/list}" th:text="#{menu.pds.admin}">공개자료실관리</a></td>
+				</th:block>
 
-				<button type="button" id="sidebarCollapse" class="btn btn-info">
-					<i class="fas fa-align-left"></i>
-					<span>Toggle Sidebar</span>
-				</button>
-				<button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<i class="fas fa-align-justify"></i>
-				</button>
+				<th:block sec:authorize="hasRole('MEMBER')">
+					<td width="120"><a href="../board/list.html" th:href="@{/board/list}" th:text="#{menu.board.member}">회원게시판</a></td>
+					<td width="120"><a href="../notice/list.html" th:href="@{/notice/list}" th:text="#{menu.notice.member}">공지사항</a></td>
+					<td width="120"><a href="../item/list.html" th:href="@{/item/list}" th:text="#{menu.item.member}">상품</a></td>
+					<td width="120"><a href="../coin/charge.html" th:href="@{/coin/charge}" th:text="#{menu.coin.charge}">코인충전</a></td>
+					<td width="120"><a href="../coin/list.html" th:href="@{/coin/list}" th:text="#{menu.coin.list}">충전내역</a></td>
+					<td width="120"><a href="../useritem/list.html" th:href="@{/useritem/list}" th:text="#{menu.useritem.list}">구매상품</a></td>
+					<td width="120"><a href="../coin/listPay.html" th:href="@{/coin/listPay}" th:text="#{menu.coin.listPay}">구매내역</a></td>
+					<td width="120"><a href="../pds/list.html" th:href="@{/pds/list}" th:text="#{menu.pds.member}">공개자료실</a></td>
+				</th:block>
 
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="nav navbar-nav ml-auto">
-						<li class="nav-item active">
-							<a class="nav-link" href="#">Page</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Page</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Page</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Page</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-
-		<h2>Collapsible Sidebar Using Bootstrap 4</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-		<div class="line"></div>
-
-		<h2>Lorem Ipsum Dolor</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-		<div class="line"></div>
-
-		<h2>Lorem Ipsum Dolor</h2>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-		<div class="line"></div>
-
-		<h3>Lorem Ipsum Dolor</h3>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	</div>
+			</th:block>
+		</tr>
+	</table>
 </div>
 
 
-<!-- jQuery CDN - Slim version (=without AJAX) -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<!-- Popper.JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-<!-- Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
-<script type="text/javascript">
-	$(document).ready(function () {
-		$('#sidebarCollapse').on('click', function () {
-			$('#sidebar').toggleClass('active');
-		});
-	});
-</script>
 
 </body>
 </html>

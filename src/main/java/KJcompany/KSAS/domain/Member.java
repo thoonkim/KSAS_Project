@@ -37,15 +37,19 @@ public class Member {
 	@Column(name = "user_no")
 	private Long userNo;
 	
-	@NotBlank
-	@Column(length = 50, nullable = false)
+	@NotBlank(message = "아이디는 필수 입력 값입니다.")
+	@Column(unique = true, length = 50, nullable = false)
 	private String userId;
 	
-	@NotBlank
+	@NotBlank(message = "비밀번호는 필수 입력 값입니다.")
 	@Column(length = 200, nullable = false)
 	private String userPw;
+
+/*	@NotBlank(message = "비밀번호를 확인해 주세요.")
+	@Column(length = 200, nullable = false)
+	private String userPw2;*/
 	
-	@NotBlank
+	@NotBlank(message = "닉네임은 필수 입력 값입니다.")
 	@Column(length = 100, nullable = false)
 	private String userName;
 	

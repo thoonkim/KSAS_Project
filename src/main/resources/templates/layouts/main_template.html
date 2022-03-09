@@ -1,5 +1,5 @@
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
 	<title>Main</title>
@@ -9,21 +9,18 @@
 
 <body>
 
-	<div th:replace="fragments/header::header"></div>
-	<hr>
-	<div>
-	<div th:replace="fragments/menu::menu">		</div>
-		<div align="center" layout:fragment="content">
 
+<div th:replace="fragments/header::header"></div>
+<hr>
 
-	</div>
-	</div>
-	<hr>
-	
+<div class="wrapper">
+	<nav id="sidebar">
+		<div th:replace="fragments/menu::menu"></div>
+	</nav>
+	<div id="content" align="center" layout:fragment="content"></div>
+</div>
+<div th:replace="fragments/footer::footer"></div>
 
-	
-	<div th:replace="fragments/footer::footer"></div>
-	<hr>
 
 </body>
 </html>

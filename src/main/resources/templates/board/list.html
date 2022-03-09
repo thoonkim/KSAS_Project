@@ -25,7 +25,7 @@
 		<a href="register.html" th:href="@{/board/register}" th:text="#{action.new}">새로만들기</a>
 	</th:block>
 	
-	<table border="1" th:with="boardList=${pgntn.page.content}">
+	<table border="5" th:with="boardList=${pgntn.page.content}">
 		<tr>
 			<th align="center" width="80" th:text="#{board.no}">번호</th>
 			<th align="center" width="320" th:text="#{board.title}">제목</th>
