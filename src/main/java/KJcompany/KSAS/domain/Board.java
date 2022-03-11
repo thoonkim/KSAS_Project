@@ -1,6 +1,7 @@
 package KJcompany.KSAS.domain;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -22,7 +23,6 @@ public class Board {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "board_id")
 	private Long boardNo;
 	
 	@NotBlank
@@ -46,5 +46,11 @@ public class Board {
 	//게시판 답글용 ;
 	@Column(nullable = false, columnDefinition = "integer default 0")
 	private Long parentNO;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
+	private Member user;
+
+	@OneToMany(mappedBy = "posts", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	private List<Comment> comments;
 
 }
