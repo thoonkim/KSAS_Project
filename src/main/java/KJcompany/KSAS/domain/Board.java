@@ -43,14 +43,5 @@ public class Board {
 	@Column(columnDefinition = "integer default 0", nullable = false)//추가
 	private int views;
 
-	//게시판 답글용 ;
-	@Column(nullable = false, columnDefinition = "integer default 0")
-	private Long parentNO;
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
-	private Member user;
-
-	@OneToMany(mappedBy = "posts", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-	private List<Comment> comments;
 
 }
